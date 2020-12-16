@@ -1,0 +1,68 @@
+
+buildscript {
+    ext {
+        springBootVersion = '2.2.12.RELEASE'
+        springCloudVersion = 'Hoxton.SR9'
+    }
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        jcenter()
+        mavenCentral()
+    }
+
+    dependencies {//用来打包
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+// 所有模块/项目的通用配置
+allprojects {
+    group 'com.jidezhuapp'
+    version '1.0-SNAPSHOT'
+
+}
+// 子模块/项目的统一配置
+subprojects {
+    //生命maven仓库
+    repositories {
+        mavenLocal()
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        jcenter()
+        mavenCentral()
+    }
+    apply plugin: 'idea'
+    apply plugin: 'java'
+    //spring boot 插件
+    apply plugin: 'org.springframework.boot'
+    //Gradle插件，提供类似Maven的依赖关系管理功能
+    apply plugin: 'io.spring.dependency-management'
+    // 指定JDK版本
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    dependencies {
+        implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+        //Actuator提供服务监控与管理的功能,路径: /actuator/{端点}
+        implementation 'org.springframework.boot:spring-boot-starter-actuator'
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+        testImplementation('org.springframework.boot:spring-boot-starter-test') {
+            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+        }
+    }
+    dependencyManagement {
+        imports {
+            //spring bom帮助我们在不指定版本号的情况下声明依赖项。
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        }
+    }
+
+    jar {
+        manifest.attributes provider: 'gradle'
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+}
