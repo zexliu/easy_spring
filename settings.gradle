@@ -2,5 +2,5 @@ rootProject.name = 'cloud'
 include 'eureka-server'
 include 'api-gateway'
 include 'authorization-server'
-include 'lcp-engine'
+include 'generator-engine'
 

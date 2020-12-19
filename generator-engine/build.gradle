@@ -1,0 +1,9 @@
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-freemarker'
+    implementation 'com.baomidou:mybatis-plus-generator:3.4.1'
+    implementation 'com.baomidou:mybatis-plus-boot-starter:3.4.1'
+    implementation 'io.springfox:springfox-boot-starter:3.0.0'
+    runtimeOnly 'mysql:mysql-connector-java'
+    implementation 'org.apache.commons:commons-lang3:3.11'
+}

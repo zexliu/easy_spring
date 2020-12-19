@@ -1,5 +1,0 @@
-spring:
-  application:
-    name: lcp-engine
-  profiles:
-    active: dev

@@ -17,7 +17,7 @@ buildscript {
 
 // 所有模块/项目的通用配置
 allprojects {
-    group 'com.jidezhuapp'
+    group 'com.jdzapp'
     version '1.0-SNAPSHOT'
 
 }

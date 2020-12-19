@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: generator-engine
+  profiles:
+    active: dev
+  freemarker:
+    suffix: .ftl
+
